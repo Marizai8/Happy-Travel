@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТурГид</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .tours-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .tour {
+            width: calc(50% - 20px);
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+        .tour-info {
+            display: none;
+            padding: 10px;
+            background-color: #f0f0f0;
+            margin-top: 10px;
+        }
+        .show-info {
+            cursor: pointer;
+            color: #4caf50;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: #fff;
+        }
+        .about, .contact {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+        }
+        .reserve-btn {
+            background-color: #4caf50; /* Зеленый цвет */
+        }
+        .contact-btn {
+            background-color: #2196f3; /* Синий цвет */
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        button:disabled {
+            background-color: #4caf50; /* Зеленый цвет */
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        .form-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .form-container form {
+            display: inline-block;
+            text-align: left;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .form-container form input,
+        .form-container form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-container form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container form button:hover {
+            background-color: #0056b3;
+        }
+        .video-container {
+            max-width: 600px;
+            text-align: center;
+            margin: 20px auto;
+        }
+        @media (max-width: 768px) {
+            .tour {
+                width: calc(100% - 20px);
+            }
+        }
+	.logo {
+            width: 200px; 
+            height: auto; 
+	}
+    </style>
+<script>
+  function toggleInfo(id) {
+            var info = document.getElementById(id);
+            if (info.style.display === "none") {
+                info.style.display = "block";
+            } else {
+                info.style.display = "none";
+            }
+        }
+        function reserveTour(tourName, price) {
+            alert('Вы забронировали ' + tourName + ' за ' + price + '$');
+        }
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('.about, .contact, .tours-section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+</script>
+
+</head>
+<body>
+    <div class="nav">
+        <a href="#" onclick="goToHome()">Главная</a>
+        <a href="#tours-section">Туры</a>
+        <a href="#about" onclick="showSection('about')">О нас</a>
+        <a href="#contact" onclick="showSection('contact')">Контакты</a>
+    </div>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Логотип ТурГид" class="logo">
+            <h1>Happy Travel</h1>
+        </div>
+        <div id="tours-section" class="tours-section">
+        <div class="video-container">
+            <h1>Невероятное путешествие по Байкалу всего за 79990тг</h1>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/lLhzcOxHtQE?si=FNKAqG6002itmZ0C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+<div class="form-container">
+    <h2>Записаться на тур</h2>
+    <form action="submit_form.php" method="post">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
+        <input type="date" name="date" placeholder="Дата поездки" required>
+        <button type="submit" disabled>Записаться</button>
+    </form>
+</div>
+        <!-- Остальные туры -->
+        <div class="tour">
+            <h2>Тур в Италию</h2>
+            <p>Цена: 1000$</p>
+            <p>Продолжительность: 7 дней</p>
+            <p>Включено: Авиабилет, Отель, Экскурсии, Питание</p>
+            <p>Гид: Мариза</p>
+            <button class="reserve-btn" onclick="reserveTour('Тур в Италию', 1000)">Забронировать</button>
+            <a href="https://t.me/travellelelel_bot" target="_blank"><button class="contact-btn">Связаться с менеджером</button></a>
+            <div class="tour-info" id="italy-info">
+                <h3>Дополнительная информация о туре в Италию:</h3>
+                <p>Вас ждет увлекательное путешествие по знаменитым городам Италии, включая Рим, Флоренцию и Венецию.</p>
+                <p>Также вы посетите Колизей, Сикстинскую капеллу и множество других исторических мест.</p>
+                <p>Подробности экскурсий и график путешествия будут предоставлены перед вылетом.</p>
+            </div>
+            <p class="show-info" onclick="toggleInfo('italy-info')">Подробнее</p>
+        </div>
+            <!-- Тур во Францию -->
+            <div class="tour">
+                <h2>Тур во Францию</h2>
+                <p>Цена: 1200$</p>
+                <p>Продолжительность: 10 дней</p>
+                <p>Включено: Авиабилет, Отель, Экскурсии, Переводчик</p>
+                <p>Гид: Мариза</p>
+                <button class="reserve-btn" onclick="reserveTour('Тур во Францию', 1200)">Забронировать</button>
+                <a href="https://t.me/travellelelel_bot" target="_blank"><button class="contact-btn">Связаться с менеджером</button></a>
+                <div class="tour-info" id="france-info">
+                    <h3>Дополнительная информация о туре во Францию:</h3>
+                    <p>Ваше путешествие начнется с Парижа, где вы посетите Эйфелеву башню, Лувр и Нотр-Дам.</p>
+                    <p>Программа также включает поездки в Прованс, Лазурный Берег и замки Луары.</p>
+                    <p>Расписание и подробности экскурсий будут предоставлены перед вылетом.</p>
+                </div>
+                <p class="show-info" onclick="toggleInfo('france-info')">Подробнее</p>
+            </div>
+            <!-- Тур в Нью-Йорк -->
+            <div class="tour">
+                <h2>Тур в Нью-Йорк</h2>
+                <p>Цена: 1500$</p>
+                <p>Продолжительность: 5 дней</p>
+                <p>Включено: Авиабилет, Отель, Экскурсии, Трансфер</p>
+                <p>Гид: Мариза</p>
+                <button class="reserve-btn" onclick="reserveTour('Тур в Нью-Йорк', 1500)">Забронировать</button>
+                <a href="https://t.me/travellelelel_bot" target="_blank"><button class="contact-btn">Связаться с менеджером</button></a>
+                <div class="tour-info" id="nyc-info">
+                    <h3>Дополнительная информация о туре в Нью-Йорк:</h3>
+                    <p>Ваше приключение в Нью-Йорке включает посещение Таймс-сквер, Центрального парка, Статуи Свободы и Бруклинского моста.</p>
+                    <p>Вы также увидите Метрополитен-музей, Эмпайр-стейт-билдинг и многие другие достопримечательности.</p>
+                    <p>Подробности поездки и экскурсий будут предоставлены перед вылетом.</p>
+                </div>
+                <p class="show-info" onclick="toggleInfo('nyc-info')">Подробнее</p>
+            </div>
+            <!-- Тур в Токио -->
+            <div class="tour">
+                <h2>Тур в Токио</h2>
+                <p>Цена: 2000$</p>
+                <p>Продолжительность: 8 дней</p>
+                <p>Включено: Авиабилет, Отель, Экскурсии, Питание</p>
+                <p>Гид: Рустем</p>
+                <button class="reserve-btn" onclick="reserveTour('Тур в Токио', 2000)">Забронировать</button>
+                <a href="https://t.me/travellelelel_bot" target="_blank"><button class="contact-btn">Связаться с менеджером</button></a>
+                <div class="tour-info" id="tokyo-info">
+                    <h3>Дополнительная информация о туре в Токио:</h3>
+                    <p>Вы посетите храмы Асакуса и Мэйдзи, Синдзюку, Сибую и другие знаменитые районы Токио.</p>
+                    <p>Вас ждут экскурсии по современным и традиционным достопримечательностям, а также гастрономические приключения.</p>
+                    <p>Подробности поездки и экскурсий будут предоставлены перед вылетом.</p>
+                </div>
+                <p class="show-info" onclick="toggleInfo('tokyo-info')">Подробнее</p>
+            </div>
+            <!-- Добавьте больше туров по аналогии с вышеуказанными -->
+        </div>
+        <div id="about" class="about">
+            <h2>О нас</h2>
+            <p>ТурГид - это ведущая туристическая компания, специализирующаяся на организации эксклюзивных туров по всему миру. Мы предлагаем широкий выбор туров, которые включают в себя авиабилеты, проживание, экскурсии и многое другое. Наша цель - сделать ваше путешествие незабываемым и максимально комфортным.</p>
+            <p>Наша команда профессионалов с многолетним опытом работы в туризме готова помочь вам в выборе идеального тура, который соответствует вашим пожеланиям и бюджету.</p>
+            <p>Мы стремимся предоставить нашим клиентам лучший сервис и незабываемые впечатления от путешествий.</p>
+        </div>
+        <div id="contact" class="contact">
+            <h2>Контакты</h2>
+            <p>Вы можете связаться с нами по электронной почте:</p>
+            <p>Email: <a href="mailto:mariza.akmurzina@narxoz.kz">mariza.akmurzina@narxoz.kz</a></p>
+            <p>Email: <a href="mailto:rustem.bukarbayev@narxoz.kz">rustem.bukarbayev@narxoz.kz</a></p>
+    	    <p>Следите за нами в социальных сетях:</p>
+    	    <p>
+       	    <a href="https://www.instagram.com/akm_markiza" target="_blank">Instagram</a> |
+            <a href="https://t.me/travellelelel_bot" target="_blank">Telegram бот</a>
+    	    </p>
+        </div>
+        <div class="footer">
+        <p>© 2024 Happy Travel. Все права защищены.</p>
+    </div>
+</div>
+</body>
+</html>
+
